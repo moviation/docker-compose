@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  redis:
+    # https://hub.docker.com/_/redis
+    image: redis
+    container_name: redis
+    restart: always
+    volumes:
+      - type: bind
+        source: ./redis.conf
+        target: /usr/local/etc/redis/redis.conf
+      - /data/redis:/usr/local/etc/redis
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf
